@@ -1,6 +1,8 @@
 package lk.ijse.posm.dao;
 
 
+import lk.ijse.posm.dao.custom.impl.LoginDAOImpl;
+
 public class DAOFactory {
     private static DAOFactory daoFactory;
     private DAOFactory() {
@@ -9,12 +11,12 @@ public class DAOFactory {
         return (daoFactory == null) ? daoFactory = new DAOFactory() : daoFactory;
     }
     public enum DAOTypes {
-        CUSTOMER,ITEM,ORDER,ORDER_DETAILS,QUERY_DAO
+        LOGIN,CUSTOMER,ITEM,ORDER,ORDER_DETAILS,QUERY_DAO
     }
     public SuperDAO getDAO(DAOTypes types){
         switch (types) {
-            case CUSTOMER:
-                //return new CustomerDAOImpl();
+            case LOGIN:
+                return new LoginDAOImpl();
             case ITEM:
                 //return new ItemDAOImpl();
             case ORDER:
