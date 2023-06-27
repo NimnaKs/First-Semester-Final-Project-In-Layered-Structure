@@ -12,9 +12,10 @@ public interface CrudDAO<T,ID> extends SuperDAO{
 
     public boolean exits(ID id) throws SQLException, ClassNotFoundException;
 
-    public void delete(ID id) throws SQLException, ClassNotFoundException;
+    public boolean delete(ID id) throws SQLException, ClassNotFoundException;
 
     public ID generateNewId() throws SQLException, ClassNotFoundException;
 
     public T search(ID Value) throws SQLException, ClassNotFoundException;
+
 }

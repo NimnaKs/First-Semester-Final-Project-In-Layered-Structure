@@ -9,7 +9,6 @@ public class DBConnection {
     private final Connection connection;
 
     private DBConnection() throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.jdbc.Driver");
         connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/postOffice", "root", "ijse@200108");
     }
 

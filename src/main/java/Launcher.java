@@ -5,16 +5,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 
 public class Launcher extends Application {
-
-    public static LocalDate date=LocalDate.now();
-    public static String userId="User0000";
-
     public void start(Stage stage) throws Exception {
 
-        Parent root = FXMLLoader.load(getClass().getResource("/view/welcomeForm.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/welcomeForm.fxml")));
         stage.setTitle("Post Office Management System");
         stage.centerOnScreen();
         stage.setScene(new Scene(root));

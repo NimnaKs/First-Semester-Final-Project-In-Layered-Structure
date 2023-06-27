@@ -30,16 +30,21 @@ public class Ems_parcel_Entity {
 
     private String receive_date;
 
-    private String mail_type;
-
     private String receivers_contact_No;
 
-    private String type;
+    private String mail_type;
 
     private double weight;
 
     private String status;
 
     private double price;
+
+    public Ems_parcel_Entity(String mail_id, String receiver_Name, String receivers_address) {
+        this.mail_id = mail_id;
+        this.receiver_Name = receiver_Name;
+        this.receivers_address = receivers_address;
+    }
+
 
 }

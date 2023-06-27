@@ -3,6 +3,7 @@ package lk.ijse.posm.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import com.sun.javafx.application.LauncherImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,15 +17,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import lk.ijse.posm.bo.BOFactory;
-import lk.ijse.posm.bo.custom.LoginBO;
-import lk.ijse.posm.bo.custom.impl.LoginBOImpl;
+import lk.ijse.posm.bo.custom.UserBO;
 import lk.ijse.posm.dto.UserDTO;
 import lk.ijse.posm.util.MailPack.Mail;
 import lk.ijse.posm.util.ValidationPattern.RegExPatterns;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -61,34 +63,38 @@ public class LoginFormController implements Initializable {
     @FXML
     private Label userPasswordError;
 
-    LoginBO loginBO= (LoginBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.LOGIN);
+    UserBO userBO = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.LOGIN);
 
-    private String password=null;
+    public static String password=null;
+
+    public static String username;
+
+    public static String userId="User0000";
 
     @FXML
     void onActionLogin(ActionEvent event) throws IOException {
 
-        String passwords = passwordHide.getText();
-        String username = userName.getText();
+        password = passwordHide.getText();
+        username = userName.getText();
 
         try {
 
-            if (passwords != null || username != null) {
-                if (loginBO.checkCredentials(new UserDTO(username, passwords))) {
+            if (password != null || username != null) {
+                if (userBO.checkCredentials(new UserDTO(username, password))) {
 
-//            Thread thread=null;
-//            try {
-//                checkUserNameMatch(userName.getText());
-//                Mail mail = new Mail("Hii Mr. "+UserModel.getUserName(userNameAvailable)+".\nYou Log In to Post office Kalutara", UserModel.getUsreEmail(userNameAvailable),
-//                        "Login Information", "/Users/mac/Desktop/Post Office Management System 2/src/main/resources/assert/ReviewBackgroundForPdf.png");
-//                mail.outMail();
-//                thread=new Thread(mail);
-//                thread.start();
-//            } catch (SQLException | MessagingException e) {
-//                e.printStackTrace();
-//            }
+                    userId=userBO.getUserId(username,password);
+//                    Thread thread = null;
+//                    try {
+//                        Mail mail = new Mail("Hii Mr. " + userBO.getUserName(LoginFormController.username) + ".\nYou Log In to Post office Kalutara", userBO.getUserEmail(username),
+//                                "Login Information", "/Users/mac/Desktop/Post Office Management System 2/src/main/resources/assert/ReviewBackgroundForPdf.png");
+//                        mail.outMail();
+//                        thread = new Thread(mail);
+//                        thread.start();
+//                    } catch (SQLException | MessagingException e) {
+//                        e.printStackTrace();
+//                    }
 
-                    AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/dashBoardControlForm.fxml"));
+                    AnchorPane anchorPane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/dashBoardControlForm.fxml")));
                     Scene scene = new Scene(anchorPane);
                     Stage stage = (Stage) root.getScene().getWindow();
                     stage.setScene(scene);
@@ -96,7 +102,8 @@ public class LoginFormController implements Initializable {
                     stage.centerOnScreen();
                     stage.setFullScreen(true);
 
-//            thread.interrupt();
+//                    thread.interrupt();
+
                 } else {
                     new Alert(Alert.AlertType.ERROR, "Your Entered Password Or UserName is Wrong !").show();
                 }
@@ -111,7 +118,7 @@ public class LoginFormController implements Initializable {
         }
 
     }
-//
+
     @FXML
     void onMouseClickForgetPassword(MouseEvent event) throws IOException {
 

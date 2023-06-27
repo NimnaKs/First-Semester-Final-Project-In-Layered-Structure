@@ -95,7 +95,7 @@
 				</staticText>
 				<image>
 					<reportElement x="686" y="0" width="114" height="60" uuid="7d0e2d4f-71f6-4a82-b84d-c871d5409ad6"/>
-					<imageExpression><![CDATA["/Users/mac/Desktop/Post Office Management System 2/src/main/resources/assert/ReviewBackground.png"]]></imageExpression>
+					<imageExpression><![CDATA["/Users/mac/Desktop/1-st-Semester-Layered-Project/src/main/resources/assert/ReviewBackground.png"]]></imageExpression>
 				</image>
 			</frame>
 			<frame>

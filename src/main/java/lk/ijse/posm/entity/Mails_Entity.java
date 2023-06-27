@@ -18,4 +18,10 @@ public class Mails_Entity {
     private String receivers_address;
     private String receiver_date;
     private String type;
+
+    public Mails_Entity(String mails_id, String receivers_name, String receivers_address) {
+        this.mails_id = mails_id;
+        this.receivers_name = receivers_name;
+        this.receivers_address = receivers_address;
+    }
 }

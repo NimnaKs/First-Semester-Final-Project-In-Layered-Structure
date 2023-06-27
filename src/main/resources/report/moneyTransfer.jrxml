@@ -65,7 +65,7 @@
 				<reportElement mode="Opaque" x="0" y="0" width="553" height="95" backcolor="#000000" uuid="6c6ca4e1-17cd-4913-93d6-5e670ea9ae8a"/>
 				<image>
 					<reportElement x="433" y="16" width="114" height="60" uuid="7d1dd3bc-ca0a-486f-bee5-a2c3b7f05d5c"/>
-					<imageExpression><![CDATA["/Users/mac/Desktop/Post Office Management System 2/src/main/resources/assert/ReviewBackground.png"]]></imageExpression>
+					<imageExpression><![CDATA["/Users/mac/Desktop/1-st-Semester-Layered-Project/src/main/resources/assert/ReviewBackground.png"]]></imageExpression>
 				</image>
 				<staticText>
 					<reportElement x="0" y="0" width="440" height="60" forecolor="#FFFFFF" uuid="7b9ebf7d-7f88-420c-aede-14c8ca4a7592"/>
